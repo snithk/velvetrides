@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop-Up Example</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Libre Baskerville', serif;
+            background: linear-gradient(90deg, #F2BFA4, #FFFFFF);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .popup, .loading-screen, .reject-reason {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            width: 300px;
+            border-radius: 10px;
+        }
+
+        .popup-header {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .popup-details {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .popup-details div {
+            margin: 5px 0;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 10px;
+        }
+
+        .popup-buttons {
+            text-align: center;
+        }
+
+        .popup-buttons .button {
+            width: 45%;
+            margin: 5px;
+        }
+
+        .loading-screen {
+            text-align: center;
+        }
+
+        .reject-reason {
+            text-align: center;
+        }
+
+        .reject-reason textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button class="button" onclick="showPopup()">Show Fare Details</button>
+
+    <div class="popup" id="popup">
+        <div class="popup-header">Fare Details</div>
+        <div class="popup-details">
+            <div><strong>Price:</strong>  ₹20</div>
+            <div><strong>Distance:</strong> 10 KM</div>
+            <div><strong>Location:</strong> MallaReddy University, MRU</div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3803.8441099245856!2d78.44947857493894!3d17.56260718335477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb8ff8652b6823%3A0x981713dbb4b708c3!2sMalla%20Reddy%20University!5e0!3m2!1sen!2sin!4v1729608872700!5m2!1sen!2sin" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <div class="popup-buttons">
+            <button class="button" onclick="acceptOrder()">Accept</button>
+            <button class="button" onclick="rejectOrder()">Reject</button>
+        </div>
+    </div>
+
+    <div class="loading-screen" id="loading-screen">
+        <div class="popup-header">Loading...</div>
+        <div class="popup-details">
+            The passenger is waiting for you. Reach your location ASAP!
+        </div>
+    </div>
+
+    <div class="reject-reason" id="reject-reason">
+        <div class="popup-header">Reason for Rejection</div>
+        <textarea id="reason-text"></textarea>
+        <button class="button" onclick="submitReason()">Okay</button>
+    </div>
+
+    <audio id="bell-sound" loop>
+        <source src="https://www.soundjay.com/button/sounds/button-3.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('bell-sound').play();
+        }
+
+        function acceptOrder() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('loading-screen').style.display = 'block';
+            document.getElementById('bell-sound').play();
+
+            // Pause the audio after 10 seconds
+            setTimeout(function() {
+                document.getElementById('bell-sound').pause();
+                document.getElementById('bell-sound').currentTime = 0;
+            }, 10000); // 10000 milliseconds = 10 seconds
+
+            // Navigate to ride-details.html after 10 seconds
+           
+        }
+
+        function rejectOrder() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('reject-reason').style.display = 'block';
+            document.getElementById('bell-sound').pause();
+            document.getElementById('bell-sound').currentTime = 0;
+        }
+
+        function submitReason() {
+            var reason = document.getElementById('reason-text').value;
+            alert('Reason for rejection: ' + reason);
+            document.getElementById('reject-reason').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

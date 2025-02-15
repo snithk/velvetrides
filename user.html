@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Libre Baskerville', serif;
+            background: linear-gradient(90deg, #F2BFA4, #FFFFFF);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            width: 350px;
+            border-radius: 10px;
+            text-align: center;
+            overflow: hidden; /* Prevents overflow of car or smoke */
+        }
+
+        .popup-header {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .popup-details {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .popup-details div {
+            margin: 5px 0;
+        }
+
+        .popup-details img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 10px 0;
+        }
+
+        .car-container {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            margin-top: 20px;
+            overflow: hidden; /* Contains the car animation within this container */
+        }
+
+        .car {
+            width: 100px;
+            position: absolute;
+            animation: moveCar 4s linear infinite;
+        }
+
+        /* Car moving from left to right within the popup */
+        @keyframes moveCar {
+            0% { left: -100px; }
+            100% { left: calc(100% - 100px); }
+        }
+
+        .smoke {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(100, 100, 100, 0.8);
+            opacity: 0;
+            animation: smokeAnimation 1.5s infinite ease-in-out;
+        }
+
+        .smoke:nth-child(2) {
+            left: 40px;
+            animation-delay: 0.3s;
+        }
+
+        .smoke:nth-child(3) {
+            left: 60px;
+            animation-delay: 0.6s;
+        }
+
+        /* Smoke puff animation */
+        @keyframes smokeAnimation {
+            0% {
+                transform: scale(0.5);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .loading-text {
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <button class="button" onclick="showPopup()">Show Ride Details</button>
+
+    <div class="popup" id="popup">
+        <div class="popup-header">Ride Details</div>
+        <div class="popup-details">
+            <img src="avatr.png" alt="Rider Photo">
+            <div><strong>Name:</strong> Rattalu</div>
+            <div><strong>Phone:</strong> 9999999999</div>
+            <div><strong>Distance:</strong> 10KM</div>
+            <div><strong>Fare Price:</strong> ₹20</div>
+            <div><strong>Message:</strong> Your female rider is on the way!</div>
+        </div>
+
+        <div class="car-container">
+            <img class="car" src="car.png" alt="photo">
+            <div class="smoke"></div>
+            <div class="smoke"></div>
+            <div class="smoke"></div>
+        </div>
+        <div class="loading-text">The Female Rider is on the way!</div>
+    </div>
+
+    <script>
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

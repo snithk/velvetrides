@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SheCabs - Drive with Confidence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+    <script src="script.js"></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #F5E7DE;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        #intro-animation {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            block-size: 100vh;
+            background-color: #F2BFA4;
+            color: #fff;
+            text-align: center;
+            animation: fadeOut 5s ease-out forwards;
+        }
+
+        #intro-logo {
+            inline-size: 150px;
+            block-size: auto;
+            margin-bottom: 20px;
+        }
+
+        .animated-title {
+            font-size: 4rem;
+            color: #F5E7DE;
+            animation: zoomIn 2s ease-in-out;
+            letter-spacing: 3px;
+        }
+
+        #main-content, #user-registration,  #driver-registration, #driver-module {
+            display: none;
+            padding: 200px;
+            text-align: center;
+        }
+        #user-module{
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header {
+            padding: 20px 0;
+            color: #333;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-direction: column;
+        }
+
+        .logo-container img {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .module, .registration {
+            background-color: rgba(245, 231, 222, 0.85);
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .input-group label {
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 5px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #F2BFA4;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        button:hover {
+            background-color: #F5E7DE;
+        }
+
+        /* Animations */
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .recording-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .recording-controls button {
+            margin: 0 10px;
+        }
+                  /* Style for the pop-up */
+       .popup {
+              display: none;
+              position: fixed;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              background-color: #fff;
+              border-radius: 10px;
+              padding: 20px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              z-index: 9999;
+            }
+        
+        .popup h2 {
+              margin-top: 0;
+            }
+        
+        .popup input[type="file"], .popup input[type="text"] {
+              margin-bottom: 10px;
+              padding: 8px;
+              width: 100%;
+            }
+        
+        .popup button {
+            background-color: #ff0000;
+              color: #fff;
+              border: none;
+              padding: 10px;
+              width: 100%;
+              cursor: pointer;
+              border-radius: 5px;
+            }
+        .popup .message {
+              margin-top: 15px;
+              display: none;
+              color: green;
+              font-weight: bold;
+            }
+            /* Emergency Button and Car Image */
+        .buttons-container {
+              text-align: center;
+            }
+        
+        .buttons-container button {
+              background-color: #f2bfa4;
+              color: white;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 10px;
+              cursor: pointer;  
+              font-size: 15px;
+              margin: 10px;
+            }
+        
+        .police-car {
+              width: 200px; /* Increased size */
+              display: none;
+              margin-top: 10px;
+            }
+        
+        .light {
+              animation: flashing 0.5s infinite;
+            }
+        
+         @keyframes flashing {
+              0% { filter: brightness(0.5); }
+              100% { filter: brightness(1.5); }
+            }
+            
+           
+    </style>
+</head>
+<body>
+    <!-- Animation Intro -->
+    <div id="intro-animation">
+        <img id="intro-logo" src="C:\Users\Srithik\Desktop\velvet rides/final.jpg" alt="SheCabs Logo">
+        <h1 class="animated-title">VELVET RIDES</h1>
+        <h2 class="animated-subtitle">Drive with Confidence</h2>
+    </div>
+
+    <!-- Main Content Section (initially hidden) -->
+    <div id="main-content">
+        <header>
+            <div class="logo-container">
+                <img src="C:\Users\Srithik\Desktop\velvet rides/final.jpg" alt="Final Logo">
+                <h1>VELVET RIDES</h1>
+                <h2>DRIVE WITH CONFIDENCE</h2>
+            </div>
+            <h2>Select Your Role</h2>
+            <button id="user-module-btn">User</button>
+            <button id="driver-module-btn">Driver</button>
+        </header>
+    </div>
+
+    <!-- User Registration Page -->
+    <div id="user-registration" class="registration">
+        <div class="logo-container">
+            <img src="C:\Users\Srithik\Desktop\velvet rides/final.jpg" alt="Final Logo">
+            <h1>VELVET RIDES</h1>
+            <h2>DRIVE WITH CONFIDENCE</h2>
+        </div>
+        <h2>User Registration</h2>
+        <div class="input-group">
+            <label for="user-email">Email</label>
+            <input type="email" id="user-email" placeholder="Enter your email" required>
+        </div>
+        <div class="input-group">
+            <label for="user-phone">Phone Number</label>
+            <input type="text" id="user-phone" placeholder="Enter your phone number" required>
+        </div>
+        <button id="user-register">Register</button>
+        <button id="back-to-main-from-user-registration">Back</button>
+    </div>
+
+    <!-- User Module -->
+    <div id="user-module" class="module" style="display: none;">
+        <div class="logo-container">
+            <img src="C:\Users\Srithik\Desktop\velvet rides/final.jpg" alt="Final Logo">
+            <h1>VELVET RIDES</h1>
+            <h2>DRIVE WITH CONFIDENCE</h2>
+        </div>
+        <h2>User Module</h2>
+        <div class="input-group">
+            <label for="pickup">Pickup Location</label>
+            <input type="text" id="pickup" placeholder="Enter your pickup location">
+        </div>
+        <div class="input-group">
+            <label for="drop">Drop Location</label>
+            <input type="text" id="drop" placeholder="Enter your drop location">
+        </div>
+        <div class="input-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" placeholder="Enter your phone number" required>
+        </div>
+        <button id="calculate-fare-user">Calculate Fare</button>
+        <div class="fare-estimate">
+            <p id="fare-user">Estimated Fare: ₹0.00</p>
+            <p id="distance-user">Distance: 0 km</p>
+        </div>
+        
+        <!-- Voice Recording Feature for User Module -->
+        <h2>Voice Commands</h2>
+        <div class="recording-controls">
+            <button id="start-recording-user">Start Recording</button>
+            <button id="stop-recording-user" disabled>Stop Recording</button>
+            <a id="download-user" style="display: none;">Download Recording</a>
+        </div>
+        <audio id="user-audio" controls style="display: none;"></audio>
+
+        <button id="back-to-main-from-user-module">Back</button>
+       
+
+        
+        
+          <!-- Buttons Container (New Code) -->
+<div class="buttons-container">
+    <button id="reportFraudBtn">Report Fraud Driver</button>
+    <button id="emergencyBtn">Emergency</button>
+</div>
+
+        
+          <!-- Police Car Image (Increased Size) -->
+          <img src="c:\Users\Srithik\Downloads\police.png.png" alt="Police Car" class="police-car" id="policeCar">
+        
+        
+          <!-- Fixed Fraud Report Popup -->
+<div class="popup" id="fraudPopup">
+    <h2>Report Fraud Driver</h2>
+    <label>Upload Vehicle Picture:</label>
+    <input type="file" id="vehiclePicture"><br>
+    <label>Enter Vehicle Number Plate:</label>
+    <input type="text" id="numberPlate" placeholder="Number Plate"><br>
+    <button id="submitReportBtn">Report Fraud!</button>
+    <div class="message" id="message">Our team will take further actions...</div>
+    <button id="closePopupBtn">Back</button> <!-- Fixed Back Button -->
+</div>
+
+        
+          
+
+        
+        <h2>Map</h2>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3803.8441099245856!2d78.44947857493894!3d17.56260718335477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb8ff8652b6823%3A0x981713dbb4b708c3!2sMalla%20Reddy%20University!5e0!3m2!1sen!2sin!4v1729608872700!5m2!1sen!2sin" 
+                width="600" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy"></iframe>
+                
+                <button id="ride-button" onclick="startRide()">Book Ride</button>
+                
+              
+                
+
+
+    </div>
+    
+
+    <!-- Driver Registration Page -->
+    <div id="driver-registration" class="registration">
+        <div class="logo-container">
+            <img src="C:\Users\Srithik\Desktop\velvet rides\final.jpg" alt="Final Logo">
+            <h1>VELVET RIDES</h1>
+            <h2>DRIVE WITH CONFIDENCE</h2>
+        </div>
+        <h2>Driver Registration</h2>
+        <div class="input-group">
+            <label for="driver-name">Driver Name</label>
+            <input type="text" id="driver-name" placeholder="Enter your name" required>
+        </div>
+        <div class="input-group">
+            <label for="driver-email">Email</label>
+            <input type="email" id="driver-email" placeholder="Enter your email" required>
+        </div>
+        <div class="input-group">
+            <label for="driver-phone">Phone Number</label>
+            <input type="text" id="driver-phone" placeholder="Enter your phone number" required>
+        </div>
+        
+<div class="input-group">
+            <label for="pan">PAN</label>
+            <input type="text" id="pan" placeholder="Enter your PAN" required>
+        </div>
+        <div class="input-group">
+            <label for="aadhar">Aadhar</label>
+            <input type="text" id="aadhar" placeholder="Enter your Aadhar" required>
+        </div>
+        <button id="driver-register">Register</button>
+        <button id="back-to-main-from-driver-registration">Back</button>
+    </div>
+
+
+       
+        
+    </div>
+
+    <!-- Driver Module -->
+   <!-- Driver Module -->
+<!-- Driver Module -->
+<div id="driver-module" class="module" style="display: none;">
+    <div class="logo-container">
+        <img src="C:\Users\Srithik\Desktop\velvet rides/final.jpg" alt="Final Logo">
+        <h1>VELVET RIDES</h1>
+        <h2>DRIVE WITH CONFIDENCE</h2>
+    </div>
+    <h2>Driver Module</h2>
+    <p id="drop-location-driver"></p>
+    <button id="calculate-fare-driver">Calculate Fare</button>
+    <div class="fare-estimate">
+        <p id="fare-driver">Estimated Fare: ₹0.00</p>
+        <p id="distance-driver">Distance: 0 km</p>
+    </div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3803.8441099245856!2d78.44947857493894!3d17.56260718335477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb8ff8652b6823%3A0x981713dbb4b708c3!2sMalla%20Reddy%20University!5e0!3m2!1sen!2sin!4v1729608872700!5m2!1sen!2sin" 
+            width="600" 
+            height="450" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy"></iframe>
+    <button id="accept-ride" onclick="window.location.href = 'you.html';">Veiw Ride Details</button>
+  
+    
+        
+        <!-- Voice Recording Feature for Driver Module -->
+        <h2>Voice Commands</h2>
+        <div class="recording-controls">
+            <button id="start-recording-driver">Start Recording</button>
+            <button id="stop-recording-driver" disabled>Stop Recording</button>
+            <a id="download-driver" style="display: none;">Download Recording</a>
+        </div>
+        <audio id="driver-audio" controls style="display: none;"></audio>
+        <button id="back-to-main-from-driver-module">Back</button>
+         <!-- Fraud Report Popup -->
+        <!-- Fraud Report Popup -->
+        <!-- Buttons Container -->
+<!-- Buttons Container (New Code) -->
+<div class="buttons-container">
+    <button id="reportFraudBtnDriver">Report Fraud Driver</button>
+    <button id="emergencyBtnDriver">Emergency</button>
+</div>
+
+<!-- Police Car Image -->
+<img src="c:\Users\Srithik\Downloads\police.png.png" alt="Police Car" class="police-car" id="policeCar" style="display: none;">
+
+<!-- Fixed Fraud Report Popup -->
+<div class="popup" id="fraudPopupDriver">
+    <h2>Report Fraud Driver</h2>
+    <label>Upload Vehicle Picture:</label>
+    <input type="file" id="vehiclePicture"><br>
+    <label>Enter Vehicle Number Plate:</label>
+    <input type="text" id="numberPlateDriver" placeholder="Number Plate"><br>
+    <button id="submitReportBtnDriver">Report Fraud!</button>
+    <div class="message" id="messageDriver">Our team will take further actions...</div>
+    <button id="closePopupBtnDriver">Back</button> <!-- Fixed Back Button -->
+</div> 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOM fully loaded and parsed");
+
+    // 🚗 User Module Elements
+    const fraudPopup = document.getElementById("fraudPopup");
+    const policeCar = document.getElementById("policeCar");
+    const reportFraudBtn = document.getElementById("reportFraudBtn");
+    const emergencyBtn = document.getElementById("emergencyBtn");
+    const closePopupBtn = document.getElementById("closePopupBtn");
+    const submitReportBtn = document.getElementById("submitReportBtn");
+    const message = document.getElementById("message");
+
+    // 🏎️ Driver Module Elements
+    const fraudPopupDriver = document.getElementById("fraudPopupDriver");
+    const reportFraudBtnDriver = document.getElementById("reportFraudBtnDriver");
+    const emergencyBtnDriver = document.getElementById("emergencyBtnDriver");
+    const closePopupBtnDriver = document.getElementById("closePopupBtnDriver");
+    const submitReportBtnDriver = document.getElementById("submitReportBtnDriver");
+    const messageDriver = document.getElementById("messageDriver");
+
+    // ✅ User Module: Show Fraud Report Popup
+    reportFraudBtn.addEventListener("click", function () {
+        console.log("User Report Fraud Button Clicked");
+        fraudPopup.style.display = "block";
+    });
+
+    // ✅ Driver Module: Show Fraud Report Popup
+    reportFraudBtnDriver.addEventListener("click", function () {
+        console.log("Driver Report Fraud Button Clicked");
+        fraudPopupDriver.style.display = "block";
+    });
+
+    // ✅ User Module: Close Fraud Report Popup
+    closePopupBtn.addEventListener("click", function () {
+        console.log("User Close Popup Button Clicked");
+        fraudPopup.style.display = "none";
+    });
+
+    // ✅ Driver Module: Close Fraud Report Popup
+    closePopupBtnDriver.addEventListener("click", function () {
+        console.log("Driver Close Popup Button Clicked");
+        fraudPopupDriver.style.display = "none";
+    });
+
+    // ✅ User Module: Submit Fraud Report
+    submitReportBtn.addEventListener("click", function () {
+        console.log("User Submit Report Button Clicked");
+        message.style.display = "block";
+        message.textContent = "Our team will take further actions...";
+        setTimeout(() => {
+            message.textContent = "The driver has been banned.";
+        }, 3000);
+    });
+
+    // ✅ Driver Module: Submit Fraud Report
+    submitReportBtnDriver.addEventListener("click", function () {
+        console.log("Driver Submit Report Button Clicked");
+        messageDriver.style.display = "block";
+        messageDriver.textContent = "Our team will take further actions...";
+        setTimeout(() => {
+            messageDriver.textContent = "The fraud report has been submitted.";
+        }, 3000);
+    });
+
+    // ✅ User Module: Emergency Alert Function
+    emergencyBtn.addEventListener("click", function () {
+        console.log("User Emergency Button Clicked");
+        let siren = new Audio("https://www.soundjay.com/button/sounds/police-siren-01.mp3");
+        siren.play().catch(() => alert("Enable sound manually."));
+        policeCar.style.display = "block";
+        policeCar.classList.add("light");
+        setTimeout(() => {
+            alert("Police is on the way!");
+        }, 3000);
+    });
+
+    // ✅ Driver Module: Emergency Alert Function
+    emergencyBtnDriver.addEventListener("click", function () {
+        console.log("Driver Emergency Button Clicked");
+        let siren = new Audio("https://www.soundjay.com/button/sounds/police-siren-01.mp3");
+        siren.play().catch(() => alert("Enable sound manually."));
+        policeCar.style.display = "block";
+        policeCar.classList.add("light");
+        setTimeout(() => {
+            alert("Police is on the way!");
+        }, 3000);
+    });
+});
+
+</script> 
+<!-- Add this in the driver module section -->
+<div class="ride-notification-popup" id="rideNotification" style="display: none;">
+    <h3>New Ride Request! 🚖</h3>
+    <p id="notificationPickup"></p>
+    <p id="notificationDrop"></p>
+    <p id="notificationFare"></p>
+    <div class="notification-buttons">
+        <button id="acceptRide">Accept</button>
+        <button id="declineRide">Decline</button>
+    </div>
+</div>
+
+<style>
+/* Add these styles */
+.ride-notification-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    z-index: 10000;
+    text-align: center;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translate(-50%, -200%); }
+    to { transform: translate(-50%, -50%); }
+}
+
+.notification-buttons button {
+    margin: 10px;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+#acceptRide {
+    background: #00cc00;
+    color: white;
+}
+
+#declineRide {
+    background: #ff4444;
+    color: white;
+}
+</style>
+
+<script>
+// Add this in the driver module script
+function checkForRides() {
+    const rideRequest = JSON.parse(localStorage.getItem('rideRequest'));
+    if (rideRequest && !rideRequest.processed) {
+        showRideNotification(rideRequest);
+    }
+}
+
+function showRideNotification(ride) {
+    const notification = document.getElementById('rideNotification');
+    document.getElementById('notificationPickup').textContent = `Pickup: ${ride.pickup}`;
+    document.getElementById('notificationDrop').textContent = `Drop: ${ride.drop}`;
+    document.getElementById('notificationFare').textContent = `Fare: ₹${ride.fare}`;
+    notification.style.display = 'block';
+
+    // Sound notification
+    const notificationSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2861/2861-preview.mp3');
+    notificationSound.play();
+
+    // Auto-decline after 30 seconds
+    setTimeout(() => {
+        if (notification.style.display === 'block') {
+            declineRide();
+        }
+    }, 30000);
+}
+
+document.getElementById('acceptRide').addEventListener('click', function() {
+    localStorage.setItem('rideStatus', 'accepted');
+    document.getElementById('rideNotification').style.display = 'none';
+    window.location.href = 'you.html';
+    // Add actual ride acceptance logic here
+});
+
+document.getElementById('declineRide').addEventListener('click', function() {
+    declineRide();
+});
+
+function declineRide() {
+    const rideRequest = JSON.parse(localStorage.getItem('rideRequest'));
+    rideRequest.processed = true;
+    localStorage.setItem('rideRequest', JSON.stringify(rideRequest));
+    document.getElementById('rideNotification').style.display = 'none';
+}
+
+// Check for new rides every 3 seconds
+setInterval(checkForRides, 3000);
+
+// Update the user's book ride function
+document.getElementById('ride-button').addEventListener('click', () => {
+    const rideDetails = {
+        pickup: document.getElementById('pickup').value,
+        drop: document.getElementById('drop').value,
+        fare: document.getElementById('fare-user').innerText.split('₹')[1],
+        processed: false
+    };
+    
+    localStorage.setItem('rideRequest', JSON.stringify(rideDetails));
+    window.location.href = "car.html";
+});
+</script>
+
+
+    <script>
+        
+        
+        document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOM fully loaded and parsed");
+
+    // Get Elements
+    const fraudPopup = document.getElementById("fraudPopup");
+    const policeCar = document.getElementById("policeCar");
+    const reportFraudBtn = document.getElementById("reportFraudBtn");
+    const emergencyBtn = document.getElementById("emergencyBtn");
+    const closePopupBtn = document.getElementById("closePopupBtn");
+    const submitReportBtn = document.getElementById("submitReportBtn");
+    const message = document.getElementById("message");
+
+    // ✅ Show Fraud Report Popup
+    reportFraudBtn.addEventListener("click", function () {
+        console.log("Report Fraud Button Clicked");
+        fraudPopup.style.display = "block";
+    });
+
+    // ✅ Close Fraud Report Popup
+    closePopupBtn.addEventListener("click", function () {
+        console.log("Close Popup Button Clicked");
+        fraudPopup.style.display = "none";
+    });
+
+    // ✅ Submit Fraud Report
+    submitReportBtn.addEventListener("click", function () {
+        console.log("Submit Report Button Clicked");
+        message.style.display = "block";
+        message.textContent = "Our team will take further actions...";
+        setTimeout(() => {
+            message.textContent = "The driver has been banned.";
+        }, 3000);
+    });
+
+    // ✅ Emergency Alert Function
+    emergencyBtn.addEventListener("click", function () {
+        console.log("Emergency Button Clicked");
+
+        let siren = new Audio("https://www.soundjay.com/button/sounds/police-siren-01.mp3");
+        siren.play().catch(() => alert("Enable sound manually."));
+
+        policeCar.style.display = "block";
+        policeCar.classList.add("light");
+
+        setTimeout(() => {
+            alert("Police is on the way!");
+        }, 3000);
+    });
+});
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Handle intro animation and main content display
+            setTimeout(() => {
+                document.getElementById('intro-animation').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            }, 5000);
+
+            // Switch to user registration
+            document.getElementById('user-module-btn').addEventListener('click', () => {
+                document.getElementById('main-content').style.display = 'none';
+                document.getElementById('user-registration').style.display = 'block';
+                // Get the drop location from the user module
+document.getElementById('calculate-fare-user').addEventListener('click', () => {
+    const distanceUser = Math.random() * 10; // Random distance for demo
+    const fareUser = distanceUser * fareRate;
+    document.getElementById('fare-user').innerText = `Estimated Fare: ₹${fareUser.toFixed(2)}`;
+    document.getElementById('distance-user').innerText = `Distance: ${distanceUser.toFixed(2)} km`;
+    
+    // Get the drop location
+    const dropLocation = document.getElementById('drop').value;
+    localStorage.setItem('dropLocation', dropLocation);
+    // Display the drop location in the driver module
+document.getElementById('driver-module-btn').addEventListener('click', () => {
+    const dropLocation = localStorage.getItem('dropLocation');
+    document.getElementById('drop-location-driver').innerText = `Drop Location: ${dropLocation}`;
+});
+
+
+});
+function acceptRide() {
+    alert('Ride accepted!');
+    // Add your logic here to update the ride status
+    // For example, you can make an API call to update the ride status
+    fetch('/accept-ride', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ rideId: '12345' }) // Replace with the actual ride ID
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+    });
+}
+
+function rejectRide() {
+    alert('Ride rejected!');
+    // Add your logic here to update the ride status
+    // For example, you can make an API call to update the ride status
+    fetch('/reject-ride', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ rideId: '12345' }) // Replace with the actual ride ID
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+    });
+
+}   
+
+            });
+
+            // Switch to driver registration
+            document.getElementById('driver-module-btn').addEventListener('click', () => {
+                document.getElementById('main-content').style.display = 'none';
+                document.getElementById('driver-registration').style.display = 'block';
+            });
+            // Accept Ride button
+
+
+
+
+            // User registration logic
+            document.getElementById('user-register').addEventListener('click', () => {
+                // Perform registration logic here
+                alert('User registered!');
+                document.getElementById('user-registration').style.display = 'none';
+                document.getElementById('user-module').style.display = 'block';
+            });
+            function startRide() {
+    // Redirect to `car.html`, which will show for 10 seconds before redirecting
+    window.location.href = "car.html";
+}
+            
+document.getElementById('ride-button').addEventListener('click', () => {
+        console.log("🚗 Ride Started! Redirecting to car.html...");
+        window.location.href = "car.html";
+    });
+
+            // Driver registration logic
+            document.getElementById('driver-register').addEventListener('click', () => {
+                // Perform registration logic here
+                alert('Driver registered!');
+                document.getElementById('driver-registration').style.display = 'none';
+                document.getElementById('driver-module').style.display = 'block';
+                
+            });
+
+            // Back buttons
+            document.getElementById('back-to-main-from-user-registration').addEventListener('click', () => {
+                document.getElementById('user-registration').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            });
+
+            document.getElementById('back-to-main-from-driver-registration').addEventListener('click', () => {
+                document.getElementById('driver-registration').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            });
+
+            document.getElementById('back-to-main-from-user-module').addEventListener('click', () => {
+                document.getElementById('user-module').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            });
+
+            document.getElementById('back-to-main-from-driver-module').addEventListener('click', () => {
+                document.getElementById('driver-module').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            });
+            // Store element references
+const mainContentDiv = document.getElementById('main-content');
+
+const userRegistrationDiv = document.getElementById('user-registration');
+const backToMainFromUserRegistrationButton = document.getElementById('back-to-main-from-user-registration');
+
+const driverRegistrationDiv = document.getElementById('driver-registration');
+const backToMainFromDriverRegistrationButton = document.getElementById('back-to-main-from-driver-registration');
+
+const userModuleDiv = document.getElementById('user-module');
+const backToMainFromUserModuleButton = document.getElementById('back-to-main-from-user-module');
+
+const driverModuleDiv = document.getElementById('driver-module');
+const backToMainFromDriverModuleButton = document.getElementById('back-to-main-from-driver-module');
+
+
+// Add event listeners
+backToMainFromUserRegistrationButton.addEventListener('click', () => {
+    userRegistrationDiv.style.display = 'none';
+    mainContentDiv.style.display = 'block';
+});
+
+backToMainFromDriverRegistrationButton.addEventListener('click', () => {
+    driverRegistrationDiv.style.display = 'none';
+    mainContentDiv.style.display = 'block';
+});
+
+backToMainFromUserModuleButton.addEventListener('click', () => {
+    userModuleDiv.style.display = 'none';
+    mainContentDiv.style.display = 'block';
+});
+
+backToMainFromDriverModuleButton.addEventListener('click', () => {
+    driverModuleDiv.style.display = 'none';
+    mainContentDiv.style.display = 'block';
+});
+
+            // Fare calculation
+            const fareRate = 10; // Example fare rate per kilometer
+
+            document.getElementById('calculate-fare-user').addEventListener('click', () => {
+                const distanceUser = Math.random() * 10; // Random distance for demo
+                const fareUser = distanceUser * fareRate;
+                document.getElementById('fare-user').innerText = `Estimated Fare: ₹${fareUser.toFixed(2)}`;
+                document.getElementById('distance-user').innerText = `Distance: ${distanceUser.toFixed(2)} km`;
+            });
+
+            document.getElementById('calculate-fare-driver').addEventListener('click', () => {
+                const distanceDriver = Math.random() * 10; // Random distance for demo
+                const fareDriver = distanceDriver * fareRate;
+                document.getElementById('fare-driver').innerText = `Estimated Fare: ₹${fareDriver.toFixed(2)}`;
+                document.getElementById('distance-driver').innerText = `Distance: ${distanceDriver.toFixed(2)} km`;
+            });
+            // Get the pickup and drop locations from the user module
+document.getElementById('calculate-fare-user').addEventListener('click', () => {
+    const distanceUser = Math.random() * 10; // Random distance for demo
+    const fareUser = distanceUser * fareRate;
+    document.getElementById('fare-user').innerText = `Estimated Fare: ₹${fareUser.toFixed(2)}`;
+    document.getElementById('distance-user').innerText = `Distance: ${distanceUser.toFixed(2)} km`;
+    
+    // Get the pickup and drop locations
+    const pickupLocation = document.getElementById('pickup').value;
+    const dropLocation = document.getElementById('drop').value;
+    localStorage.setItem('pickupLocation', pickupLocation);
+    localStorage.setItem('dropLocation', dropLocation);
+});
+
+// Display the pickup and drop locations in the driver module
+document.getElementById('driver-module-btn').addEventListener('click', () => {
+    const pickupLocation = localStorage.getItem('pickupLocation');
+    const dropLocation = localStorage.getItem('dropLocation');
+    document.getElementById('drop-location-driver').innerText = `Pickup Location: ${pickupLocation} - Drop Location: ${dropLocation}`;
+});
+
+            // Emergency and fraud reporting functions
+            window.emergencyCall = function() {
+                alert('Calling emergency services...');
+                
+            };
+
+            window.reportFraudDriver = function() {
+                alert('Reporting fraud driver...');
+            };
+
+            window.reportFraudUser = function() {
+                alert('Reporting fraud user...');
+            };
+
+            // Order acceptance and decline functions
+            window.acceptOrder = function() {
+                alert('Order accepted.');
+            };
+
+            window.declineOrder = function() {
+                alert('Order declined.');
+            };
+
+            // Voice recording feature
+            const userAudio = document.getElementById('user-audio');
+            const startRecordingUser = document.getElementById('start-recording-user');
+            const stopRecordingUser = document.getElementById('stop-recording-user');
+            const downloadUser = document.getElementById('download-user');
+
+            const driverAudio = document.getElementById('driver-audio');
+            const startRecordingDriver = document.getElementById('start-recording-driver');
+            const stopRecordingDriver = document.getElementById('stop-recording-driver');
+            const downloadDriver = document.getElementById('download-driver');
+
+            let mediaRecorderUser;
+            let recordedChunksUser = [];
+
+            let mediaRecorderDriver;
+            let recordedChunksDriver = [];
+
+            startRecordingUser.addEventListener('click', () => {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(stream => {
+                        mediaRecorderUser = new MediaRecorder(stream);
+                        mediaRecorderUser.start();
+                        mediaRecorderUser.ondataavailable = (event) => {
+                            recordedChunksUser.push(event.data);
+                        };
+                        mediaRecorderUser.onstop = () => {
+                            const blob = new Blob(recordedChunksUser, { type: 'audio/wav' });
+                            const url = URL.createObjectURL(blob);
+                            downloadUser.href = url;
+                            downloadUser.download = 'user_recording.wav';
+                            downloadUser.style.display = 'block';
+                            userAudio.src = url;
+                            userAudio.style.display = 'block';
+                        };
+                        stopRecordingUser.disabled = false;
+                        startRecordingUser.disabled = true;
+                    });
+            });
+
+            stopRecordingUser.addEventListener('click', () => {
+                mediaRecorderUser.stop();
+                stopRecordingUser.disabled = true;
+                startRecordingUser.disabled = false;
+            });
+
+            startRecordingDriver.addEventListener('click', () => {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(stream => {
+                        mediaRecorderDriver = new MediaRecorder(stream);
+                        mediaRecorderDriver.start();
+                        mediaRecorderDriver.ondataavailable = (event) => {
+                            recordedChunksDriver.push(event.data);
+                        };
+                        mediaRecorderDriver.onstop = () => {
+                            const blob = new Blob(recordedChunksDriver, { type: 'audio/wav' });
+                            const url = URL.createObjectURL(blob);
+                            downloadDriver.href = url;
+                            downloadDriver.download = 'driver_recording.wav';
+                            downloadDriver.style.display = 'block';
+                            driverAudio.src = url;
+                            driverAudio.style.display = 'block';
+                        };
+                        stopRecordingDriver.disabled = false;
+                        startRecordingDriver.disabled = true;
+                    });
+            });
+
+            stopRecordingDriver.addEventListener('click', () => {
+                mediaRecorderDriver.stop();
+                stopRecordingDriver.disabled = true;
+                startRecordingDriver.disabled = false;
+            });
+        });document.addEventListener('DOMContentLoaded', () => {
+    // User registration logic
+    document.getElementById('user-register').addEventListener('click', () => {
+        const email = document.getElementById('user-email').value;
+        const phone = document.getElementById('user-phone').value;
+
+        fetch('/register/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, phone })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            document.getElementById('user-registration').style.display = 'none';
+            document.getElementById('user-module').style.display = 'block';
+        });
+    });
+
+    // Driver registration logic
+    document.getElementById('driver-register').addEventListener('click', () => {
+        const name = document.getElementById('driver-name').value;
+        const email = document.getElementById('driver-email').value;
+        const phone = document.getElementById('driver-phone').value;
+        const pan = document.getElementById('pan').value;
+        const aadhar = document.getElementById('aadhar').value;
+
+        fetch('/register/driver', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, email, phone, pan, aadhar })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            document.getElementById('driver-registration').style.display = 'none';
+            document.getElementById('driver-module').style.display = 'block';
+        });
+    });
+
+    // Fare calculation logic
+    document.getElementById('calculate-fare-user').addEventListener('click', () => {
+        const distance = Math.random() * 10; // Random distance for demo
+
+        fetch('/calculate-fare', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ distance })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('fare-user').innerText = `Estimated Fare: ₹${data.fare.toFixed(2)}`;
+            document.getElementById('distance-user').innerText = `Distance: ${distance.toFixed(2)} km`;
+        });
+    });
+
+    document.getElementById('calculate-fare-driver').addEventListener('click', () => {
+        const distance = Math.random() * 10; // Random distance for demo
+
+        fetch('/calculate-fare', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ distance })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('fare-driver').innerText = `Estimated Fare: ₹${data.fare.toFixed(2)}`;
+            document.getElementById('distance-driver').innerText = `Distance: ${distance.toFixed(2)} km`;
+        });
+    });
+
+    // Emergency and fraud reporting functions
+    window.emergencyCall = function() {
+        fetch('/emergency', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+        });
+    };
+
+    window.reportFraudDriver = function() {
+        fetch('/report-fraud', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ type: 'driver', id: '12345' }) // Example ID for demo
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+        });
+    };
+
+    window.reportFraudUser = function() {
+        fetch('/report-fraud', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ type: 'user', id: '67890' }) // Example ID for demo
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+        });
+    };
+    
+
+    // Order acceptance and decline functions (dummy implementation)
+    
+
+    // Voice recording feature 
+    const userAudio = document.getElementById('user-audio');
+    const startRecordingUser = document.getElementById('start-recording-user');
+    const stopRecordingUser = document.getElementById('stop-recording-user');
+    const downloadUser = document.getElementById('download-user');
+
+    const driverAudio = document.getElementById('driver-audio');
+    const startRecordingDriver = document.getElementById('start-recording-driver');
+    const stopRecordingDriver = document.getElementById('stop-recording-driver');
+    const downloadDriver = document.getElementById('download-driver');
+
+    let mediaRecorderUser;
+    let recordedChunksUser = [];
+
+    let mediaRecorderDriver;
+    let recordedChunksDriver = [];
+
+    startRecordingUser.addEventListener('click', () => {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                mediaRecorderUser = new MediaRecorder(stream);
+                mediaRecorderUser.start();
+                mediaRecorderUser.ondataavailable = (event) => {
+                    recordedChunksUser.push(event.data);
+                };
+                mediaRecorderUser.onstop = () => {
+                    const blob = new Blob(recordedChunksUser, { type: 'audio/wav' });
+                    const url = URL.createObjectURL(blob);
+                    downloadUser.href = url;
+                    downloadUser.download = 'user_recording.wav';
+                    downloadUser.style.display = 'block';
+                    userAudio.src = url;
+                    userAudio.style.display = 'block';
+                };
+                stopRecordingUser.disabled = false;
+                startRecordingUser.disabled = true;
+            });
+    });
+
+    stopRecordingUser.addEventListener('click', () => {
+        mediaRecorderUser.stop();
+        stopRecordingUser.disabled = true;
+        startRecordingUser.disabled = false;
+    });
+
+    startRecordingDriver.addEventListener('click', () => {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                mediaRecorderDriver = new MediaRecorder(stream);
+                mediaRecorderDriver.start();
+                mediaRecorderDriver.ondataavailable = (event) => {
+                    recordedChunksDriver.push(event.data);
+                };
+                mediaRecorderDriver.onstop = () => {
+                    const blob = new Blob(recordedChunksDriver, { type: 'audio/wav' });
+                    const url = URL.createObjectURL(blob);
+                    downloadDriver.href = url;
+                    downloadDriver.download = 'driver_recording.wav';
+                    downloadDriver.style.display = 'block';
+                    driverAudio.src = url;
+                    driverAudio.style.display = 'block';
+                };
+                stopRecordingDriver.disabled = false;
+                startRecordingDriver.disabled = true;
+            });
+    });
+
+    stopRecordingDriver.addEventListener('click', () => {
+        mediaRecorderDriver.stop();
+        stopRecordingDriver.disabled = true;
+        startRecordingDriver.disabled = false;
+    });
+}); 
+document.getElementById('user-register').addEventListener('click', () => {
+    const email = document.getElementById('user-email').value;
+    const phone = document.getElementById('user-phone').value;
+
+    fetch('http://localhost:5000/api/users/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, phone })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        document.getElementById('user-registration').style.display = 'none';
+        document.getElementById('user-module').style.display = 'block';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});  
+    </script>
+ 
+    </body>
+    </html>
+    
+    

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Female Cab Drivers</title>
+    <style>
+        /* Background color */
+        body {
+            background-color: #f4d5c5;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Button styling */
+        button {
+            background-color: #ffbd99;
+            color: #fff;
+            font-size: 16px;
+            padding: 15px 32px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #facdb8; /* Slightly darker shade for hover effect */
+        }
+
+        /* Table container */
+        #table-container {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            max-width: 950px;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #F2BFA4;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #F5E7DE;
+        }
+
+        /* Image styling for avatars */
+        td img.avatar {
+            width: 60px; /* Increased size */
+            height: 60px; /* Increased size */
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Button fade-out animation */
+        @keyframes fadeOutButton {
+            0% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Offline Button -->
+    <button id="offline-btn">Offline</button>
+
+    <!-- Table Container (Hidden Initially) -->
+    <div id="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Company Name</th>
+                    <th>Age</th>
+                    <th>Phone Number</th>
+                    <th>Experience</th>
+                    <th>Rating</th>
+                    <th>Pictures</th> <!-- Increased size for pictures -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Priya Sharma</td>
+                    <td>Ola Cabs</td>
+                    <td>30</td>
+                    <td>+91 90012 34567</td>
+                    <td>5 years</td>
+                    <td>4.8/5</td>
+                    <td><img src="1.png.png" class="avatar" alt="Priya's Avatar"></td>
+                </tr>
+                <tr>
+                    <td>Ayesha Khan</td>
+                    <td>Uber</td>
+                    <td>28</td>
+                    <td>+91 90012 34568</td>
+                    <td>3 years</td>
+                    <td>4.5/5</td>
+                    <td><img src="2.png.png" class="avatar" alt="Ayesha's Avatar"></td>
+                </tr>
+                <tr>
+                    <td>Neha Reddy</td>
+                    <td>She Cabs</td>
+                    <td>35</td>
+                    <td>+91 90012 34569</td>
+                    <td>7 years</td>
+                    <td>4.7/5</td>
+                    <td><img src="3.png.png" class="avatar" alt="Neha's Avatar"></td>
+                </tr>
+                <tr>
+                    <td>Anjali Gupta</td>
+                    <td>Meru Cabs</td>
+                    <td>32</td>
+                    <td>+91 90012 34570</td>
+                    <td>4 years</td>
+                    <td>4.6/5</td>
+                    <td><img src="4.png.png" class="avatar" alt="Anjali's Avatar"></td>
+                </tr>
+                <tr>
+                    <td>Radhika Iyer</td>
+                    <td>Savaari</td>
+                    <td>29</td>
+                    <td>+91 90012 34571</td>
+                    <td>6 years</td>
+                    <td>4.9/5</td>
+                    <td><img src="5.png.png" class="avatar" alt="Radhika's Avatar"></td>
+                </tr>
+                <tr>
+                    <td>Simran Patel</td>
+                    <td>Ola Cabs</td>
+                    <td>27</td>
+                    <td>+91 90012 34572</td>
+                    <td>2 years</td>
+                    <td>4.3/5</td>
+                    <td><img src="6.png.png" class="avatar" alt="Simran's Avatar"></td>
+                </tr>
+                <tr>
+                    <td>Kavitha Suresh</td>
+                    <td>Uber</td>
+                    <td>34</td>
+                    <td>+91 90012 34573</td>
+                    <td>8 years</td>
+                    <td>4.7/5</td>
+                    <td><img src="7.png.png" class="avatar" alt="Kavitha's Avatar"></td>
+                </tr>
+                <tr>
+                    <td>Shalini Verma</td>
+                    <td>She Cabs</td>
+                    <td>31</td>
+                    <td>+91 90012 34574</td>
+                    <td>5 years</td>
+                    <td>4.6/5</td>
+                    <td><img src="8.png.png" class="avatar" alt="Shalini's Avatar"></td>
+                </tr>
+                <tr>
+                    <td>Preeti Rani</td>
+                    <td>Meru Cabs</td>
+                    <td>33</td>
+                    <td>+91 90012 34575</td>
+                    <td>6 years</td>
+                    <td>4.5/5</td>
+                    <td><img src="9.png.png" class="avatar" alt="Preeti's Avatar"></td>
+                </tr>
+                <tr>
+                    <td>Rekha Desai</td>
+                    <td>Savaari</td>
+                    <td>29</td>
+                    <td>+91 90012 34576</td>
+                    <td>3 years</td>
+                    <td>4.4/5</td>
+                    <td><img src="10.png.png" class="avatar" alt="Rekha's Avatar"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // JavaScript to display table on button click
+        const offlineBtn = document.getElementById('offline-btn');
+        const tableContainer = document.getElementById('table-container');
+
+        offlineBtn.addEventListener('click', function() {
+            // Hide the button with a fade-out animation
+            offlineBtn.style.animation = 'fadeOutButton 0.5s forwards';
+            
+            // Show the table with fade-in animation
+            tableContainer.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>

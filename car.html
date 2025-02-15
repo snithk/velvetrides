@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Screen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family:'Times New Roman', Times, serif;
+;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #F5E7DE;
+        }
+
+        .loading-screen {
+            text-align: center;
+        }
+
+        .road {
+            width: 100%;
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .car-container {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .car {
+            width: 100px;
+            animation: moveCar 2s linear infinite;
+        }
+
+        /* Car moving from left to right */
+        @keyframes moveCar {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(50vw); }
+        }
+
+        .smoke {
+            position: absolute;
+            bottom: 20px;
+            left: 10px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(100, 100, 100, 0.8);
+            opacity: 0;
+            animation: smokeAnimation 1.5s infinite ease-in-out;
+        }
+
+        .smoke:nth-child(2) {
+            left: 20px;
+            animation-delay: 0.3s;
+        }
+
+        .smoke:nth-child(3) {
+            left: 30px;
+            animation-delay: 0.6s;
+        }
+
+        /* Smoke puff animation */
+        @keyframes smokeAnimation {
+            0% {
+                transform: scale(0.5);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .loading-text {
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="road">
+            <div class="car-container">
+                <img class="car" src="https://img.icons8.com/color/100/000000/suv.png" alt="Car"> <!-- Car image -->
+                <div class="smoke"></div>
+                <div class="smoke"></div>
+                <div class="smoke"></div>
+            </div>
+        </div>
+        <div class="loading-text">Searching for women drivers, please wait...</div>
+    </div>
+    <!-- Add this script at the end of the body in car.html -->
+<script>
+    // Redirect to ride-details.html after 10 seconds
+    setTimeout(() => {
+        window.location.href = 'user.html';
+    }, 3000); // 10,000 milliseconds = 10 seconds
+</script>
+</body>
+</html>
